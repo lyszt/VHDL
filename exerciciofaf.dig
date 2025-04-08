@@ -75,12 +75,12 @@
       <elementName>External</elementName>
       <elementAttributes>
         <entry>
-          <string>Label</string>
-          <string>four_arrayor</string>
-        </entry>
-        <entry>
           <string>applicationType</string>
           <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>four_arrayor</string>
         </entry>
         <entry>
           <string>externalInputs</string>
@@ -199,6 +199,73 @@ END behaviour_or;</string>
       <elementAttributes/>
       <pos x="1020" y="160"/>
     </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>schematic2</string>
+        </entry>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>a,b,c</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY schematic2 IS 
+    PORT (
+        a: IN STD_LOGIC;
+        b: IN STD_LOGIC;
+        c: IN STD_LOGIC;
+        d, e: OUT STD_LOGIC
+    );
+END schematic2;
+
+ARCHITECTURE behaviour OF schematic2 IS 
+BEGIN 
+    d &lt;= ((not a) and c) or (not a and b) or (b and c);
+    e &lt;= (not a and not b and c) or (not a and b and not c) or (a and not b and not c) or (a and b and c);
+END behaviour;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>d,e</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1220" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="1160" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="1160" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="1160" y="240"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1380" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1380" y="200"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -206,36 +273,20 @@ END behaviour_or;</string>
       <p2 x="820" y="480"/>
     </wire>
     <wire>
-      <p1 x="700" y="240"/>
-      <p2 x="720" y="240"/>
-    </wire>
-    <wire>
-      <p1 x="740" y="240"/>
-      <p2 x="820" y="240"/>
-    </wire>
-    <wire>
-      <p1 x="880" y="240"/>
-      <p2 x="1020" y="240"/>
-    </wire>
-    <wire>
       <p1 x="1000" y="160"/>
       <p2 x="1020" y="160"/>
     </wire>
     <wire>
+      <p1 x="1160" y="160"/>
+      <p2 x="1220" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="1280" y="160"/>
+      <p2 x="1380" y="160"/>
+    </wire>
+    <wire>
       <p1 x="700" y="580"/>
       <p2 x="740" y="580"/>
-    </wire>
-    <wire>
-      <p1 x="880" y="500"/>
-      <p2 x="1000" y="500"/>
-    </wire>
-    <wire>
-      <p1 x="700" y="340"/>
-      <p2 x="820" y="340"/>
-    </wire>
-    <wire>
-      <p1 x="880" y="340"/>
-      <p2 x="1000" y="340"/>
     </wire>
     <wire>
       <p1 x="720" y="520"/>
@@ -250,12 +301,56 @@ END behaviour_or;</string>
       <p2 x="1000" y="200"/>
     </wire>
     <wire>
-      <p1 x="700" y="280"/>
-      <p2 x="740" y="280"/>
+      <p1 x="1160" y="200"/>
+      <p2 x="1180" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="1360" y="200"/>
+      <p2 x="1380" y="200"/>
     </wire>
     <wire>
       <p1 x="700" y="460"/>
       <p2 x="820" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="240"/>
+      <p2 x="720" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="240"/>
+      <p2 x="820" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="240"/>
+      <p2 x="1020" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="240"/>
+      <p2 x="1220" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="500"/>
+      <p2 x="1000" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="340"/>
+      <p2 x="820" y="340"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="340"/>
+      <p2 x="1000" y="340"/>
+    </wire>
+    <wire>
+      <p1 x="1180" y="180"/>
+      <p2 x="1220" y="180"/>
+    </wire>
+    <wire>
+      <p1 x="1280" y="180"/>
+      <p2 x="1360" y="180"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="280"/>
+      <p2 x="740" y="280"/>
     </wire>
     <wire>
       <p1 x="700" y="540"/>
@@ -282,12 +377,20 @@ END behaviour_or;</string>
       <p2 x="720" y="240"/>
     </wire>
     <wire>
+      <p1 x="1360" y="180"/>
+      <p2 x="1360" y="200"/>
+    </wire>
+    <wire>
       <p1 x="740" y="540"/>
       <p2 x="740" y="580"/>
     </wire>
     <wire>
       <p1 x="740" y="240"/>
       <p2 x="740" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="1220" y="200"/>
+      <p2 x="1220" y="240"/>
     </wire>
     <wire>
       <p1 x="1000" y="160"/>
@@ -300,6 +403,10 @@ END behaviour_or;</string>
     <wire>
       <p1 x="1020" y="200"/>
       <p2 x="1020" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="1180" y="180"/>
+      <p2 x="1180" y="200"/>
     </wire>
   </wires>
   <measurementOrdering/>
