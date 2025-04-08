@@ -266,6 +266,11 @@ END behaviour;</string>
       <elementAttributes/>
       <pos x="1380" y="200"/>
     </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes/>
+      <pos x="1260" y="380"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
