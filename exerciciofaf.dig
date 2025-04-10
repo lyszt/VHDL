@@ -203,12 +203,12 @@ END behaviour_or;</string>
       <elementName>External</elementName>
       <elementAttributes>
         <entry>
-          <string>Label</string>
-          <string>schematic2</string>
-        </entry>
-        <entry>
           <string>applicationType</string>
           <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>schematic2</string>
         </entry>
         <entry>
           <string>externalInputs</string>
@@ -268,8 +268,78 @@ END behaviour;</string>
     </visualElement>
     <visualElement>
       <elementName>External</elementName>
-      <elementAttributes/>
-      <pos x="1260" y="380"/>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>decoder_3to8</string>
+        </entry>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>a:3</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>-- O código não funcionou de jeito nenhum, nem fazendo de outros modos,
+-- incluindo pedindo pra chatgpt, entre outros. Talvez meu digital
+-- esteja com problema
+
+-- O problema só acontece com BIT_VECTOR
+-- Então fiz a questão com STD_LOGIC_VECTOR
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+ENTITY decoder_3to8 IS 
+    PORT (
+        a : IN STD_LOGIC_VECTOR(2 DOWNTO 0);  
+        y : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)  
+    );
+END decoder_3to8;
+
+ARCHITECTURE behaviour OF decoder_3to8 IS 
+BEGIN 
+    y(0) &lt;= not a(2) and not a(1) and not a(0);  -- 000
+    y(1) &lt;= not a(2) and not a(1) and a(0);     -- 001
+    y(2) &lt;= not a(2) and a(1) and not a(0);     -- 010
+    y(3) &lt;= not a(2) and a(1) and a(0);        -- 011
+    y(4) &lt;= a(2) and not a(1) and not a(0);     -- 100
+    y(5) &lt;= a(2) and not a(1) and a(0);        -- 101
+    y(6) &lt;= a(2) and a(1) and not a(0);        -- 110
+    y(7) &lt;= a(2) and a(1) and a(0);            -- 111
+END behaviour;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>y:8</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1200" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>8</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1340" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>3</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1160" y="360"/>
     </visualElement>
   </visualElements>
   <wires>
@@ -312,6 +382,14 @@ END behaviour;</string>
     <wire>
       <p1 x="1360" y="200"/>
       <p2 x="1380" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="1260" y="360"/>
+      <p2 x="1340" y="360"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="360"/>
+      <p2 x="1200" y="360"/>
     </wire>
     <wire>
       <p1 x="700" y="460"/>
