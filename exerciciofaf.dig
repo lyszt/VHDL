@@ -270,12 +270,12 @@ END behaviour;</string>
       <elementName>External</elementName>
       <elementAttributes>
         <entry>
-          <string>Label</string>
-          <string>decoder_3to8</string>
-        </entry>
-        <entry>
           <string>applicationType</string>
           <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>decoder_3to8</string>
         </entry>
         <entry>
           <string>externalInputs</string>
@@ -340,6 +340,51 @@ END behaviour;</string>
         </entry>
       </elementAttributes>
       <pos x="1160" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Code</string>
+          <string>library ieee;
+use ieee.std_logic_1164.all;
+
+
+
+entity mux is
+    port (
+    I : in bit_vector (3 downto 0); -- Input
+    SEL : in bit_vector (1 downto 0); -- Select
+    Y : out bit -- Output
+    );
+end entity mux
+
+
+architecture behaviour of mux is 
+begin 
+    process(I, SEL)
+    begin
+        case SEL is 
+            when &quot;00&quot; =&gt;
+                Y &lt;= I(0);
+            when &quot;01&quot; =&gt;
+                Y &lt;= I(1);
+            when &quot;10&quot; =&gt;    
+                Y &lt;= I(2);
+            when &quot;11&quot; =&gt;
+                Y &lt;= I(3);
+            when others =&gt;
+                Y &lt;= &apos;0&apos;;
+        end case;
+    end process;
+end architecture behaviour;</string>
+        </entry>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+      </elementAttributes>
+      <pos x="1200" y="460"/>
     </visualElement>
   </visualElements>
   <wires>
