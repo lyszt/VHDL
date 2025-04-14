@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>four_entryor</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>a,b,c,d</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>library ieee;
+    use ieee.std_logic_1164.all;
+
+    ENTITY four_entryor IS
+        port(
+            a: IN STD_LOGIC; 
+            b: IN STD_LOGIC;
+            c: IN STD_LOGIC;
+            d: IN STD_LOGIC;
+            s: OUT STD_LOGIC
+        );
+    END four_entryor;
+
+
+    ARCHITECTURE behaviour_or OF four_entryor IS 
+    BEGIN
+        S &lt;= a OR b OR c OR d;
+    END behaviour_or;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>s</string>
+        </entry>
+      </elementAttributes>
+      <pos x="820" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="700" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="700" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="700" y="540"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="700" y="580"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1000" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>four_arrayor</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>a:4</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>library ieee;
+use ieee.std_logic_1164.all;
+
+ENTITY four_arrayor IS 
+    PORT (
+        a: IN STD_LOGIC_VECTOR(3 downto 0);
+        s: OUT STD_LOGIC
+    );
+END four_arrayor;
+
+ARCHITECTURE behaviour_or OF four_arrayor IS 
+BEGIN
+    s &lt;= a(0) OR a(1) OR a(2) OR a(3);
+END behaviour_or;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>s</string>
+        </entry>
+      </elementAttributes>
+      <pos x="820" y="340"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>4</int>
+        </entry>
+      </elementAttributes>
+      <pos x="700" y="340"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1000" y="340"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>schematic1</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>a,b,c</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>library ieee;
+use ieee.std_logic_1164.all;
+
+ENTITY schematic1 IS
+    port(
+        a: IN STD_LOGIC; 
+        b: IN STD_LOGIC;
+        c: IN STD_LOGIC;
+        d, e, f: OUT STD_LOGIC
+    );
+END schematic1;
+
+
+ARCHITECTURE behaviour_or OF schematic1 IS 
+BEGIN
+    d &lt;= (not a) and b;
+    e &lt;= &apos;1&apos;;
+    f &lt;= (not b) and (not c);
+END behaviour_or;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>d,e,f</string>
+        </entry>
+      </elementAttributes>
+      <pos x="820" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="700" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="700" y="240"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="700" y="280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1020" y="240"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1020" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1020" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>schematic2</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>a,b,c</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY schematic2 IS 
+    PORT (
+        a: IN STD_LOGIC;
+        b: IN STD_LOGIC;
+        c: IN STD_LOGIC;
+        d, e: OUT STD_LOGIC
+    );
+END schematic2;
+
+ARCHITECTURE behaviour OF schematic2 IS 
+BEGIN 
+    d &lt;= ((not a) and c) or (not a and b) or (b and c);
+    e &lt;= (not a and not b and c) or (not a and b and not c) or (a and not b and not c) or (a and b and c);
+END behaviour;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>d,e</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1220" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="1160" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="1160" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="1160" y="240"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1380" y="160"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1380" y="200"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>decoder_3to8</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>a:3</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>-- O código não funcionou de jeito nenhum, nem fazendo de outros modos,
+-- incluindo pedindo pra chatgpt, entre outros. Talvez meu digital
+-- esteja com problema
+
+-- O problema só acontece com BIT_VECTOR
+-- Então fiz a questão com STD_LOGIC_VECTOR
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+
+ENTITY decoder_3to8 IS 
+    PORT (
+        a : IN STD_LOGIC_VECTOR(2 DOWNTO 0);  
+        y : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)  
+    );
+END decoder_3to8;
+
+ARCHITECTURE behaviour OF decoder_3to8 IS 
+BEGIN 
+    y(0) &lt;= not a(2) and not a(1) and not a(0);  -- 000
+    y(1) &lt;= not a(2) and not a(1) and a(0);     -- 001
+    y(2) &lt;= not a(2) and a(1) and not a(0);     -- 010
+    y(3) &lt;= not a(2) and a(1) and a(0);        -- 011
+    y(4) &lt;= a(2) and not a(1) and not a(0);     -- 100
+    y(5) &lt;= a(2) and not a(1) and a(0);        -- 101
+    y(6) &lt;= a(2) and a(1) and not a(0);        -- 110
+    y(7) &lt;= a(2) and a(1) and a(0);            -- 111
+END behaviour;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>y:8</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1200" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>8</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1340" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>3</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1160" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>half_adder</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>a,b</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>library ieee;
+use ieee.std_logic_1164.all;
+
+
+entity half_adder is 
+    port (
+      a, b : in std_logic;
+      s, cout : out std_logic
+    );
+end half_adder;
+
+architecture behavioral of half_adder is 
+begin 
+  s &lt;= a xor b;
+  cout &lt;= a and b;
+end behavioral;
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity full_adder is 
+    port (
+      a,b, cin: in std_logic;
+      s, cout: out std_logic
+    );
+end full_adder;
+
+architecture behavioral of full_adder is 
+  signal e,f: std_logic;
+  begin
+  e &lt;=  a xor b;
+  s &lt;= e xor cin;
+  f &lt;= a and b;
+  cout &lt;= (a and b) or (cin and e);
+end behavioral;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>s,cout</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1340" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>full_adder</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>a,b</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>library ieee;
+use ieee.std_logic_1164.all;
+
+
+entity half_adder is 
+    port (
+      a, b : in std_logic;
+      s, cout : out std_logic
+    );
+end half_adder;
+
+architecture behavioral of half_adder is 
+begin 
+  s &lt;= a xor b;
+  cout &lt;= a and b;
+end behavioral;
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity full_adder is 
+    port (
+      a,b, cin: in std_logic;
+      s, cout: out std_logic
+    );
+end full_adder;
+
+architecture behavioral of full_adder is 
+  signal e,f: std_logic;
+  begin
+  e &lt;=  a xor b;
+  s &lt;= e xor cin;
+  f &lt;= a and b;
+  cout &lt;= (a and b) or (cin and e);
+end behavioral;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>s,cout</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1340" y="560"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>full_adder</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>a,b</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>library ieee;
+use ieee.std_logic_1164.all;
+
+
+entity half_adder is 
+    port (
+      a, b : in std_logic;
+      s, cout : out std_logic
+    );
+end half_adder;
+
+architecture behavioral of half_adder is 
+begin 
+  s &lt;= a xor b;
+  cout &lt;= a and b;
+end behavioral;
+
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity full_adder is 
+    port (
+      a,b, cin: in std_logic;
+      s, cout: out std_logic
+    );
+end full_adder;
+
+architecture behavioral of full_adder is 
+  signal e,f: std_logic;
+  begin
+  e &lt;=  a xor b;
+  s &lt;= e xor cin;
+  f &lt;= a and b;
+  cout &lt;= (a and b) or (cin and e);
+end behavioral;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>s,cout</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1340" y="660"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="1160" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="1160" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="1160" y="660"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="1160" y="580"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Or</elementName>
+      <elementAttributes>
+        <entry>
+          <string>wideShape</string>
+          <boolean>true</boolean>
+        </entry>
+      </elementAttributes>
+      <pos x="1500" y="640"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="700" y="480"/>
+      <p2 x="820" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="1000" y="160"/>
+      <p2 x="1020" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="160"/>
+      <p2 x="1220" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="1280" y="160"/>
+      <p2 x="1380" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="580"/>
+      <p2 x="740" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="580"/>
+      <p2 x="1340" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="1400" y="580"/>
+      <p2 x="1500" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="720" y="520"/>
+      <p2 x="820" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="1300" y="520"/>
+      <p2 x="1440" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="200"/>
+      <p2 x="820" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="200"/>
+      <p2 x="1000" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="200"/>
+      <p2 x="1180" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="1360" y="200"/>
+      <p2 x="1380" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="1260" y="360"/>
+      <p2 x="1340" y="360"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="360"/>
+      <p2 x="1200" y="360"/>
+    </wire>
+    <wire>
+      <p1 x="1300" y="680"/>
+      <p2 x="1340" y="680"/>
+    </wire>
+    <wire>
+      <p1 x="1400" y="680"/>
+      <p2 x="1500" y="680"/>
+    </wire>
+    <wire>
+      <p1 x="1300" y="620"/>
+      <p2 x="1420" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="460"/>
+      <p2 x="820" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="460"/>
+      <p2 x="1340" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="1300" y="560"/>
+      <p2 x="1340" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="1400" y="560"/>
+      <p2 x="1420" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="240"/>
+      <p2 x="720" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="240"/>
+      <p2 x="820" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="240"/>
+      <p2 x="1020" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="240"/>
+      <p2 x="1220" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="660"/>
+      <p2 x="1340" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="500"/>
+      <p2 x="1000" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="500"/>
+      <p2 x="1340" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="340"/>
+      <p2 x="820" y="340"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="340"/>
+      <p2 x="1000" y="340"/>
+    </wire>
+    <wire>
+      <p1 x="1180" y="180"/>
+      <p2 x="1220" y="180"/>
+    </wire>
+    <wire>
+      <p1 x="1280" y="180"/>
+      <p2 x="1360" y="180"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="280"/>
+      <p2 x="740" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="540"/>
+      <p2 x="720" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="540"/>
+      <p2 x="820" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="720" y="220"/>
+      <p2 x="820" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="220"/>
+      <p2 x="1020" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="720" y="520"/>
+      <p2 x="720" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="720" y="220"/>
+      <p2 x="720" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="1360" y="180"/>
+      <p2 x="1360" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="540"/>
+      <p2 x="740" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="240"/>
+      <p2 x="740" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="1220" y="200"/>
+      <p2 x="1220" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="1300" y="520"/>
+      <p2 x="1300" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="1300" y="620"/>
+      <p2 x="1300" y="680"/>
+    </wire>
+    <wire>
+      <p1 x="1000" y="160"/>
+      <p2 x="1000" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="1420" y="560"/>
+      <p2 x="1420" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="480"/>
+      <p2 x="700" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="1020" y="200"/>
+      <p2 x="1020" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="1180" y="180"/>
+      <p2 x="1180" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="1340" y="480"/>
+      <p2 x="1340" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="1500" y="580"/>
+      <p2 x="1500" y="640"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>
