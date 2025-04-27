@@ -345,93 +345,22 @@ END behaviour;</string>
       <elementName>External</elementName>
       <elementAttributes>
         <entry>
-<<<<<<< HEAD
           <string>Label</string>
           <string>mux4to1</string>
-=======
-          <string>applicationType</string>
-          <appType>GHDL</appType>
         </entry>
-        <entry>
-          <string>Label</string>
-          <string>half_adder</string>
-        </entry>
-        <entry>
-          <string>externalInputs</string>
-          <string>a,b</string>
-        </entry>
-        <entry>
-          <string>Code</string>
-          <string>library ieee;
-use ieee.std_logic_1164.all;
-
-
-entity half_adder is 
-    port (
-      a, b : in std_logic;
-      s, cout : out std_logic
-    );
-end half_adder;
-
-architecture behavioral of half_adder is 
-begin 
-  s &lt;= a xor b;
-  cout &lt;= a and b;
-end behavioral;
-
-library ieee;
-use ieee.std_logic_1164.all;
-
-entity full_adder is 
-    port (
-      a,b, cin: in std_logic;
-      s, cout: out std_logic
-    );
-end full_adder;
-
-architecture behavioral of full_adder is 
-  signal e,f: std_logic;
-  begin
-  e &lt;=  a xor b;
-  s &lt;= e xor cin;
-  f &lt;= a and b;
-  cout &lt;= (a and b) or (cin and e);
-end behavioral;</string>
->>>>>>> a7bd92ea292d45b5a1bccef9aa17be83b12680ef
-        </entry>
-        <entry>
-          <string>externalOutputs</string>
-          <string>s,cout</string>
-        </entry>
-      </elementAttributes>
-      <pos x="1340" y="460"/>
-    </visualElement>
-    <visualElement>
-      <elementName>External</elementName>
-      <elementAttributes>
         <entry>
           <string>applicationType</string>
           <appType>GHDL</appType>
         </entry>
         <entry>
-<<<<<<< HEAD
           <string>externalInputs</string>
           <string>I:4,SEL:2</string>
-=======
-          <string>Label</string>
-          <string>full_adder</string>
-        </entry>
-        <entry>
-          <string>externalInputs</string>
-          <string>a,b</string>
->>>>>>> a7bd92ea292d45b5a1bccef9aa17be83b12680ef
         </entry>
         <entry>
           <string>Code</string>
           <string>library ieee;
 use ieee.std_logic_1164.all;
 
-<<<<<<< HEAD
 entity mux4to1 is
     port (
     I : in std_logic_vector (3 downto 0); -- Input
@@ -458,137 +387,9 @@ end architecture;</string>
         <entry>
           <string>externalOutputs</string>
           <string>Y</string>
-=======
-
-entity half_adder is 
-    port (
-      a, b : in std_logic;
-      s, cout : out std_logic
-    );
-end half_adder;
-
-architecture behavioral of half_adder is 
-begin 
-  s &lt;= a xor b;
-  cout &lt;= a and b;
-end behavioral;
-
-library ieee;
-use ieee.std_logic_1164.all;
-
-entity full_adder is 
-    port (
-      a,b, cin: in std_logic;
-      s, cout: out std_logic
-    );
-end full_adder;
-
-architecture behavioral of full_adder is 
-  signal e,f: std_logic;
-  begin
-  e &lt;=  a xor b;
-  s &lt;= e xor cin;
-  f &lt;= a and b;
-  cout &lt;= (a and b) or (cin and e);
-end behavioral;</string>
-        </entry>
-        <entry>
-          <string>externalOutputs</string>
-          <string>s,cout</string>
->>>>>>> a7bd92ea292d45b5a1bccef9aa17be83b12680ef
         </entry>
       </elementAttributes>
-      <pos x="1340" y="560"/>
-    </visualElement>
-    <visualElement>
-      <elementName>External</elementName>
-      <elementAttributes>
-        <entry>
-          <string>applicationType</string>
-          <appType>GHDL</appType>
-        </entry>
-        <entry>
-          <string>Label</string>
-          <string>full_adder</string>
-        </entry>
-        <entry>
-          <string>externalInputs</string>
-          <string>a,b</string>
-        </entry>
-        <entry>
-          <string>Code</string>
-          <string>library ieee;
-use ieee.std_logic_1164.all;
-
-
-entity half_adder is 
-    port (
-      a, b : in std_logic;
-      s, cout : out std_logic
-    );
-end half_adder;
-
-architecture behavioral of half_adder is 
-begin 
-  s &lt;= a xor b;
-  cout &lt;= a and b;
-end behavioral;
-
-library ieee;
-use ieee.std_logic_1164.all;
-
-entity full_adder is 
-    port (
-      a,b, cin: in std_logic;
-      s, cout: out std_logic
-    );
-end full_adder;
-
-architecture behavioral of full_adder is 
-  signal e,f: std_logic;
-  begin
-  e &lt;=  a xor b;
-  s &lt;= e xor cin;
-  f &lt;= a and b;
-  cout &lt;= (a and b) or (cin and e);
-end behavioral;</string>
-        </entry>
-        <entry>
-          <string>externalOutputs</string>
-          <string>s,cout</string>
-        </entry>
-      </elementAttributes>
-      <pos x="1340" y="660"/>
-    </visualElement>
-    <visualElement>
-      <elementName>In</elementName>
-      <elementAttributes/>
-      <pos x="1160" y="460"/>
-    </visualElement>
-    <visualElement>
-      <elementName>In</elementName>
-      <elementAttributes/>
-      <pos x="1160" y="500"/>
-    </visualElement>
-    <visualElement>
-      <elementName>In</elementName>
-      <elementAttributes/>
-      <pos x="1160" y="660"/>
-    </visualElement>
-    <visualElement>
-      <elementName>In</elementName>
-      <elementAttributes/>
-      <pos x="1160" y="580"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Or</elementName>
-      <elementAttributes>
-        <entry>
-          <string>wideShape</string>
-          <boolean>true</boolean>
-        </entry>
-      </elementAttributes>
-      <pos x="1500" y="640"/>
+      <pos x="1200" y="460"/>
     </visualElement>
     <visualElement>
       <elementName>In</elementName>
@@ -642,20 +443,8 @@ end behavioral;</string>
       <p2 x="740" y="580"/>
     </wire>
     <wire>
-      <p1 x="1160" y="580"/>
-      <p2 x="1340" y="580"/>
-    </wire>
-    <wire>
-      <p1 x="1400" y="580"/>
-      <p2 x="1500" y="580"/>
-    </wire>
-    <wire>
       <p1 x="720" y="520"/>
       <p2 x="820" y="520"/>
-    </wire>
-    <wire>
-      <p1 x="1300" y="520"/>
-      <p2 x="1440" y="520"/>
     </wire>
     <wire>
       <p1 x="700" y="200"/>
@@ -682,36 +471,12 @@ end behavioral;</string>
       <p2 x="1200" y="360"/>
     </wire>
     <wire>
-      <p1 x="1300" y="680"/>
-      <p2 x="1340" y="680"/>
-    </wire>
-    <wire>
-      <p1 x="1400" y="680"/>
-      <p2 x="1500" y="680"/>
-    </wire>
-    <wire>
-      <p1 x="1300" y="620"/>
-      <p2 x="1420" y="620"/>
-    </wire>
-    <wire>
       <p1 x="700" y="460"/>
       <p2 x="820" y="460"/>
     </wire>
     <wire>
       <p1 x="1160" y="460"/>
-<<<<<<< HEAD
       <p2 x="1200" y="460"/>
-=======
-      <p2 x="1340" y="460"/>
-    </wire>
-    <wire>
-      <p1 x="1300" y="560"/>
-      <p2 x="1340" y="560"/>
-    </wire>
-    <wire>
-      <p1 x="1400" y="560"/>
-      <p2 x="1420" y="560"/>
->>>>>>> a7bd92ea292d45b5a1bccef9aa17be83b12680ef
     </wire>
     <wire>
       <p1 x="700" y="240"/>
@@ -730,20 +495,12 @@ end behavioral;</string>
       <p2 x="1220" y="240"/>
     </wire>
     <wire>
-      <p1 x="1160" y="660"/>
-      <p2 x="1340" y="660"/>
-    </wire>
-    <wire>
       <p1 x="880" y="500"/>
       <p2 x="1000" y="500"/>
     </wire>
     <wire>
       <p1 x="1160" y="500"/>
-<<<<<<< HEAD
       <p2 x="1200" y="500"/>
-=======
-      <p2 x="1340" y="500"/>
->>>>>>> a7bd92ea292d45b5a1bccef9aa17be83b12680ef
     </wire>
     <wire>
       <p1 x="700" y="340"/>
@@ -806,20 +563,8 @@ end behavioral;</string>
       <p2 x="1220" y="240"/>
     </wire>
     <wire>
-      <p1 x="1300" y="520"/>
-      <p2 x="1300" y="560"/>
-    </wire>
-    <wire>
-      <p1 x="1300" y="620"/>
-      <p2 x="1300" y="680"/>
-    </wire>
-    <wire>
       <p1 x="1000" y="160"/>
       <p2 x="1000" y="200"/>
-    </wire>
-    <wire>
-      <p1 x="1420" y="560"/>
-      <p2 x="1420" y="620"/>
     </wire>
     <wire>
       <p1 x="700" y="480"/>
@@ -832,14 +577,6 @@ end behavioral;</string>
     <wire>
       <p1 x="1180" y="180"/>
       <p2 x="1180" y="200"/>
-    </wire>
-    <wire>
-      <p1 x="1340" y="480"/>
-      <p2 x="1340" y="500"/>
-    </wire>
-    <wire>
-      <p1 x="1500" y="580"/>
-      <p2 x="1500" y="640"/>
     </wire>
   </wires>
   <measurementOrdering/>
