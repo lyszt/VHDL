@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>decoder_to8</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>A:3</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>-- 1 - Projete e descreva em VHDL um decodificador 3 para 8. Utilize a seguinte entidade para
+-- descrever sua solução em VHDL:
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+
+ENTITY decoder_to8 IS 
+    PORT (
+        A: IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+        Y: OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+    );
+END ENTITY;
+
+
+ARCHITECTURE behavioral OF decoder_to8 IS 
+BEGIN 
+    PROCESS(A)
+    BEGIN 
+        Y &lt;= &quot;00000000&quot;;
+        CASE A IS 
+            WHEN &quot;000&quot; =&gt; Y(0) &lt;= &apos;1&apos;;
+            WHEN &quot;001&quot; =&gt; Y(1) &lt;= &apos;1&apos;; 
+            WHEN &quot;010&quot; =&gt; Y(2) &lt;= &apos;1&apos;;
+            WHEN &quot;011&quot; =&gt; Y(3) &lt;= &apos;1&apos;;
+            WHEN &quot;100&quot; =&gt; Y(4) &lt;= &apos;1&apos;;
+            WHEN &quot;101&quot; =&gt; Y(5) &lt;= &apos;1&apos;;
+            WHEN &quot;110&quot; =&gt; Y(6) &lt;= &apos;1&apos;;
+            WHEN &quot;111&quot; =&gt; Y(7) &lt;= &apos;1&apos;;
+            WHEN OTHERS =&gt; NULL;
+        END CASE;
+    END PROCESS;
+END ARCHITECTURE;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>Y:8</string>
+        </entry>
+      </elementAttributes>
+      <pos x="860" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>3</int>
+        </entry>
+      </elementAttributes>
+      <pos x="820" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>8</int>
+        </entry>
+      </elementAttributes>
+      <pos x="960" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>decoder2to4</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>EN,A:2</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>LIBRARY IEEE;
+USE ieee.std_logic_1164.all;
+
+
+
+ENTITY decoder2to4 IS 
+    PORT (
+        EN: IN STD_LOGIC;
+        A: IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+        Y_L: OUT STD_LOGIC_VECTOR(3 DOWNTO 0)
+    );
+END ENTITY;
+
+ARCHITECTURE behavioral of decoder2to4 IS
+BEGIN
+    PROCESS(EN,A)
+    BEGIN 
+        Y_L &lt;= &quot;0000&quot;;
+        IF EN = &apos;1&apos; THEN
+            CASE A IS
+                WHEN &quot;00&quot; =&gt; Y_L(0) &lt;= &apos;1&apos;;
+                WHEN &quot;01&quot; =&gt; Y_L(1) &lt;= &apos;1&apos;;
+                WHEN &quot;10&quot; =&gt; Y_L(2) &lt;= &apos;1&apos;;
+                WHEN &quot;11&quot; =&gt; Y_L(3) &lt;= &apos;1&apos;;
+                WHEN OTHERS =&gt; NULL;
+            END CASE;
+         ELSE 
+            Y_L &lt;= &quot;0000&quot;;
+        END IF;
+    END PROCESS;    
+END ARCHITECTURE;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>Y_L:4</string>
+        </entry>
+      </elementAttributes>
+      <pos x="860" y="520"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="820" y="520"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>2</int>
+        </entry>
+      </elementAttributes>
+      <pos x="820" y="560"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>4</int>
+        </entry>
+      </elementAttributes>
+      <pos x="960" y="540"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>bc7seg</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>EN,D:4</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+
+ENTITY bc7seg IS 
+    PORT(
+        EN: IN STD_LOGIC;
+        D: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+        S: OUT STD_LOGIC_VECTOR (6 DOWNTO 0)
+    );
+END ENTITY bc7seg;
+
+
+ARCHITECTURE behavioral OF bc7seg IS 
+BEGIN 
+    PROCESS(EN,D)
+    BEGIN 
+        IF EN = &apos;0&apos; THEN
+            S &lt;= &quot;0000000&quot;;
+        ELSE 
+            CASE D IS 
+                WHEN &quot;0000&quot; =&gt; S &lt;= &quot;1111110&quot;;
+                WHEN &quot;0001&quot; =&gt; S &lt;=  &quot;0110000&quot;;
+                WHEN &quot;0010&quot; =&gt; S &lt;=  &quot;1101101&quot;;
+                WHEN &quot;0011&quot; =&gt; S &lt;=  &quot;1111001&quot;;
+                WHEN &quot;0100&quot; =&gt; S &lt;=  &quot;0110011&quot;;
+                WHEN &quot;0101&quot; =&gt; S &lt;=  &quot;1011011&quot;;
+                WHEN &quot;0110&quot; =&gt; S &lt;=  &quot;1011111&quot;;
+                WHEN &quot;0111&quot; =&gt; S &lt;=  &quot;1110000&quot;;
+                WHEN &quot;1000&quot; =&gt; S &lt;=  &quot;1111111&quot;;
+                WHEN &quot;1001&quot; =&gt; S &lt;=  &quot;1111011&quot;;
+                WHEN OTHERS =&gt; NULL;
+            END CASE;
+        END IF;
+    END PROCESS;
+END ARCHITECTURE;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>S:7</string>
+        </entry>
+      </elementAttributes>
+      <pos x="860" y="280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="820" y="280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>4</int>
+        </entry>
+      </elementAttributes>
+      <pos x="820" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>7</int>
+        </entry>
+      </elementAttributes>
+      <pos x="960" y="300"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>mux</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>I:4,SEL:2</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY mux IS
+    PORT (
+        I: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+        SEL: IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+        Y: OUT STD_LOGIC
+    );
+END ENTITY mux;
+
+ARCHITECTURE behavioral OF mux IS 
+BEGIN 
+    PROCESS(I, SEL)
+    BEGIN 
+        CASE SEL IS 
+            WHEN &quot;00&quot; =&gt; Y &lt;= I(0);
+            WHEN &quot;01&quot; =&gt; Y &lt;= I(1);
+            WHEN &quot;10&quot; =&gt; Y &lt;= I(2);
+            WHEN &quot;11&quot;  =&gt; Y &lt;= I(3);
+	    WHEN OTHERS =&gt; Y &lt;= &apos;0&apos;;
+        END CASE;
+    END PROCESS;
+END ARCHITECTURE;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>Y</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1180" y="280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>4</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1120" y="280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>2</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1120" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1300" y="320"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>counterto9</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>enable,clock,reset</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+
+ENTITY counterto9 IS
+    PORT(
+        enable: IN STD_LOGIC;
+        clock: IN STD_LOGIC;
+        reset: IN STD_LOGIC;
+        ov: OUT STD_LOGIC;
+        count: OUT STD_LOGIC_VECTOR(3 DOWNTO 0)
+    );
+END ENTITY counterto9;
+
+ARCHITECTURE behavioral OF counterto9 IS 
+
+signal current : std_logic_vector(3 DOWNTO 0);
+signal change : std_logic;
+BEGIN   
+    PROCESS(CLOCK, ENABLE, RESET, CURRENT)
+    BEGIN   
+    
+    IF enable = &apos;1&apos; THEN
+        CASE RESET IS
+            WHEN &apos;1&apos; =&gt; current &lt;= &quot;0000&quot;;
+            WHEN OTHERS =&gt; NULL;
+        END CASE;
+        IF rising_edge(clock) THEN
+            CASE CURRENT IS
+                WHEN &quot;0000&quot; =&gt;  current &lt;= &quot;0001&quot;;
+                WHEN &quot;0001&quot; =&gt; current &lt;= &quot;0010&quot;;
+                WHEN &quot;0010&quot; =&gt; current &lt;= &quot;0011&quot;;
+                WHEN &quot;0011&quot; =&gt; current &lt;= &quot;0100&quot;;
+                WHEN &quot;0100&quot; =&gt; current &lt;= &quot;0101&quot;;
+                WHEN &quot;0101&quot; =&gt; current &lt;= &quot;0110&quot;;
+                WHEN &quot;0110&quot; =&gt; current &lt;= &quot;0111&quot;;
+                WHEN &quot;0111&quot; =&gt; current &lt;= &quot;1000&quot;;
+                WHEN &quot;1000&quot; =&gt; current &lt;= &quot;1001&quot;;
+                WHEN &quot;1001&quot; =&gt;
+                    current &lt;= &quot;0000&quot;;
+                    change &lt;= &apos;1&apos;;
+                WHEN OTHERS =&gt; NULL;
+            END CASE;
+        END IF;
+    ELSE 
+        current &lt;= &quot;0000&quot;;
+    END IF;
+    END PROCESS;
+    count &lt;= current;
+    ov &lt;= change;
+END ARCHITECTURE;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>ov,count:4</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1200" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Clock</elementName>
+      <elementAttributes/>
+      <pos x="1120" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="1120" y="380"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="1120" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1300" y="400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>4</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1300" y="480"/>
+    </visualElement>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>decoder1to8</string>
+        </entry>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>A:16,SEL:3</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>LIBRARY ieee;
+    USE ieee.std_logic_1164.all;
+
+
+    ENTITY decoder1to8 IS 
+        PORT(
+            A : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+            SEL : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+            S0 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+            S1 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+            S2 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+            S3 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+            S4 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+            S5 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+            S6 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+            S7 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+        );
+    END ENTITY decoder1to8; 
+
+
+    ARCHITECTURE behavioral of decoder1to8 IS 
+    BEGIN 
+        PROCESS(A, SEL)
+            BEGIN
+            S0 &lt;= &quot;0000000000000000&quot;;
+            S1 &lt;= &quot;0000000000000000&quot;;
+            S2 &lt;= &quot;0000000000000000&quot;;
+            S3 &lt;= &quot;0000000000000000&quot;;
+            S4 &lt;= &quot;0000000000000000&quot;;
+            S5 &lt;= &quot;0000000000000000&quot;;
+            S6 &lt;= &quot;0000000000000000&quot;;
+            S7 &lt;= &quot;0000000000000000&quot;;
+            CASE SEL IS 
+                WHEN &quot;000&quot; =&gt; S0 &lt;= A;
+                WHEN &quot;001&quot; =&gt; S1 &lt;= A;
+                WHEN &quot;010&quot; =&gt; S2 &lt;= A;
+                WHEN &quot;011&quot; =&gt; S3 &lt;= A;
+                WHEN &quot;100&quot; =&gt; S4 &lt;= A;
+                WHEN &quot;101&quot; =&gt; S5 &lt;= A;
+                WHEN &quot;110&quot; =&gt; S6 &lt;= A;
+                WHEN &quot;111&quot; =&gt; S7 &lt;= A;
+                WHEN OTHERS =&gt; NULL;
+            END CASE;
+        END PROCESS;
+    END ARCHITECTURE behavioral;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>S0:16,S1:16,S2:16,S3:16,S4:16,S5:16,S6:16,S7:16</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1140" y="580"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>16</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1120" y="580"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>16</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1320" y="580"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>16</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1360" y="620"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>16</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1400" y="680"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>16</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1440" y="720"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>16</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1480" y="760"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>16</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1460" y="840"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>16</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1460" y="880"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>16</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1260" y="880"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>3</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1120" y="640"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="820" y="320"/>
+      <p2 x="860" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="320"/>
+      <p2 x="1180" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="640"/>
+      <p2 x="1260" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="1260" y="420"/>
+      <p2 x="1300" y="420"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="580"/>
+      <p2 x="1140" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="580"/>
+      <p2 x="1320" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="520"/>
+      <p2 x="860" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="1260" y="520"/>
+      <p2 x="1440" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="1360" y="840"/>
+      <p2 x="1460" y="840"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="680"/>
+      <p2 x="1360" y="680"/>
+    </wire>
+    <wire>
+      <p1 x="920" y="300"/>
+      <p2 x="960" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="1240" y="300"/>
+      <p2 x="1300" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="620"/>
+      <p2 x="1240" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="560"/>
+      <p2 x="860" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="1220" y="560"/>
+      <p2 x="1360" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="1320" y="880"/>
+      <p2 x="1460" y="880"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="720"/>
+      <p2 x="1260" y="720"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="500"/>
+      <p2 x="1200" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="1280" y="500"/>
+      <p2 x="1480" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="660"/>
+      <p2 x="1280" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="440"/>
+      <p2 x="860" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="920" y="440"/>
+      <p2 x="960" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="440"/>
+      <p2 x="1200" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="1260" y="440"/>
+      <p2 x="1300" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="280"/>
+      <p2 x="860" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="280"/>
+      <p2 x="1180" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="600"/>
+      <p2 x="1220" y="600"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="600"/>
+      <p2 x="1140" y="600"/>
+    </wire>
+    <wire>
+      <p1 x="920" y="540"/>
+      <p2 x="960" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="1240" y="540"/>
+      <p2 x="1400" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="380"/>
+      <p2 x="1200" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="700"/>
+      <p2 x="1320" y="700"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="380"/>
+      <p2 x="1200" y="420"/>
+    </wire>
+    <wire>
+      <p1 x="1200" y="460"/>
+      <p2 x="1200" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="1360" y="560"/>
+      <p2 x="1360" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="1360" y="680"/>
+      <p2 x="1360" y="840"/>
+    </wire>
+    <wire>
+      <p1 x="1440" y="520"/>
+      <p2 x="1440" y="720"/>
+    </wire>
+    <wire>
+      <p1 x="1280" y="500"/>
+      <p2 x="1280" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="600"/>
+      <p2 x="1120" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="1300" y="300"/>
+      <p2 x="1300" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="1300" y="400"/>
+      <p2 x="1300" y="420"/>
+    </wire>
+    <wire>
+      <p1 x="1300" y="440"/>
+      <p2 x="1300" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="1220" y="560"/>
+      <p2 x="1220" y="600"/>
+    </wire>
+    <wire>
+      <p1 x="1400" y="540"/>
+      <p2 x="1400" y="680"/>
+    </wire>
+    <wire>
+      <p1 x="1240" y="540"/>
+      <p2 x="1240" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="1480" y="500"/>
+      <p2 x="1480" y="760"/>
+    </wire>
+    <wire>
+      <p1 x="1320" y="700"/>
+      <p2 x="1320" y="880"/>
+    </wire>
+    <wire>
+      <p1 x="1260" y="520"/>
+      <p2 x="1260" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="1260" y="720"/>
+      <p2 x="1260" y="880"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

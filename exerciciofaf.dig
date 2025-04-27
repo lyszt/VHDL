@@ -345,52 +345,86 @@ END behaviour;</string>
       <elementName>External</elementName>
       <elementAttributes>
         <entry>
-          <string>Code</string>
-          <string>library ieee;
-use ieee.std_logic_1164.all;
-
-
-
-entity mux is
-    port (
-    I : in bit_vector (3 downto 0); -- Input
-    SEL : in bit_vector (1 downto 0); -- Select
-    Y : out bit -- Output
-    );
-end entity mux
-
-
-architecture behaviour of mux is 
-begin 
-    process(I, SEL)
-    begin
-        case SEL is 
-            when &quot;00&quot; =&gt;
-                Y &lt;= I(0);
-            when &quot;01&quot; =&gt;
-                Y &lt;= I(1);
-            when &quot;10&quot; =&gt;    
-                Y &lt;= I(2);
-            when &quot;11&quot; =&gt;
-                Y &lt;= I(3);
-            when others =&gt;
-                Y &lt;= &apos;0&apos;;
-        end case;
-    end process;
-end architecture behaviour;</string>
+          <string>Label</string>
+          <string>mux4to1</string>
         </entry>
         <entry>
           <string>applicationType</string>
           <appType>GHDL</appType>
         </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>I:4,SEL:2</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>library ieee;
+use ieee.std_logic_1164.all;
+
+entity mux4to1 is
+    port (
+    I : in std_logic_vector (3 downto 0); -- Input
+    SEL : in std_logic_vector (1 downto 0); -- Select
+    Y : out std_logic -- Output
+    );
+end mux4to1;
+
+
+architecture behaviour of mux4to1 is 
+begin 
+    process(I, SEL)
+    begin
+        case SEL is 
+            when &quot;00&quot; =&gt; Y &lt;= I(0);
+            when &quot;01&quot; =&gt; Y &lt;= I(1);
+            when &quot;10&quot; =&gt; Y &lt;= I(2);
+            when &quot;11&quot; =&gt; Y &lt;= I(3);
+            when others =&gt; Y &lt;= &apos;0&apos;;
+        end case;
+    end process;
+end architecture;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>Y</string>
+        </entry>
       </elementAttributes>
       <pos x="1200" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>4</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1160" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Bits</string>
+          <int>2</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1160" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1320" y="480"/>
     </visualElement>
   </visualElements>
   <wires>
     <wire>
       <p1 x="700" y="480"/>
       <p2 x="820" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="1260" y="480"/>
+      <p2 x="1320" y="480"/>
     </wire>
     <wire>
       <p1 x="1000" y="160"/>
@@ -441,6 +475,10 @@ end architecture behaviour;</string>
       <p2 x="820" y="460"/>
     </wire>
     <wire>
+      <p1 x="1160" y="460"/>
+      <p2 x="1200" y="460"/>
+    </wire>
+    <wire>
       <p1 x="700" y="240"/>
       <p2 x="720" y="240"/>
     </wire>
@@ -459,6 +497,10 @@ end architecture behaviour;</string>
     <wire>
       <p1 x="880" y="500"/>
       <p2 x="1000" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="500"/>
+      <p2 x="1200" y="500"/>
     </wire>
     <wire>
       <p1 x="700" y="340"/>
