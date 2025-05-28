@@ -36,7 +36,7 @@ BEGIN
                         ELSIF(STAY = '0' AND HIT = '0') THEN
                             current_state <= decide;
                         END IF;
-                    -- Aqui a lógica é baseada na pontuação
+                    -- Aqui a lógica é baseada na pontuação.
                     WHEN enemy =>
 
                     WHEN compare
