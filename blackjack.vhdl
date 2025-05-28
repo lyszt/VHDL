@@ -8,7 +8,9 @@
             STAY: IN STD_LOGIC;
             HIT : IN STD_LOGIC;
             CLOCK: IN STD_LOGIC;
-            WIN, TIE, LOSE: OUT STD_LOGIC
+            CARTA1, CARTA2 : OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
+            CARTAINIMIGO : OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
+            ganha, empata, perde: OUT STD_LOGIC
         );
     END ENTITY blackjack;
 
@@ -35,9 +37,9 @@
                 -- Por que colocar aqui e não no initial?
                 -- Pra ele só piscar uma vez pra mostrar o resultado
                 -- Apertar o clock pra apagar
-                    win <= '0';
-                    lose <= '0';
-                    tie <= '0';
+                    ganha <= '0';
+                    empata <= '0';
+                    perde <= '0';
                 -- Gera um número aleatório toda mudada de clock
                 -- poderia ser só no sort, mas enfim
                 feedback_bit := linear_feedback(7) XOR linear_feedback(5) XOR linear_feedback(4) XOR linear_feedback(3);
@@ -57,7 +59,9 @@
                             card_value_1  := (random_integer mod 10) + 1;
                             random_integer := to_integer(unsigned(linear_feedback));
                             card_value_2   := ((random_integer + 7) mod 10) + 1;
-                            cards <= cards + card_value + card_value_2;
+                            carta1 <= std_logic_vector(to_unsigned(card_value_1,5));
+                            carta2 <= std_logic_vector(to_unsigned(card_value_2,5));
+                            cards <= cards + card_value_1 + card_value_2;
                             -- Módulo pra manter o numero dentro dos limites
                         current_state <= decide;
                         WHEN decide
@@ -68,7 +72,9 @@
                                     -- Aqui foi melhor deixar 
                                     -- voltando pra decide
                                     random_integer := to_integer(unsigned(linear_feedback));
-                                    cards <= cards + ((random_integer mod 10) + 1);
+                                    card_value_1 := ((random_integer mod 10) + 1);
+                                    cards <= cards + card_value_1;
+                                    cartainimigo <= std_logic_vector(to_unsigned(card_value_1,5));
                                     current_state <= decide;
                                 ELSIF(STAY = '1' AND HIT = '0') THEN
                                     current_state <= enemy;
@@ -95,13 +101,13 @@
                         =>
                             IF(cards > enemy_cards) THEN
                                 current_state <= win;
-                                win <= '1';
+                                ganha <= '1';
                             ELSIF(cards = enemy_cards) THEN 
                                 current_state <= tie;
-                                tie <= '1';
+                                empata <= '1';
                             ELSE
                                 current_state <= lose;
-                                lose <= '1';
+                                perde <= '1';
                             END IF;
                         WHEN win
                         =>
