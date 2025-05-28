@@ -27,12 +27,13 @@
     BEGIN 
         PROCESS(CLOCK)
             VARIABLE feedback_bit : STD_LOGIC;
-            VARIABLE card_value;
+            VARIABLE card_value : INTEGER := 0;
+            VARIABLE random_integer : INTEGER := 0;
         BEGIN 
             IF(RISING_EDGE(CLOCK)) THEN
                 -- Gera um número aleatório toda mudada de clock
                 -- poderia ser só no sort, mas enfim
-                linear_feedback(0) <= linear_feedback(7) XOR linear_feedback(5) XOR linear_feedback(4) XOR linear_feedback(3);
+                feedback_bit := linear_feedback(7) XOR linear_feedback(5) XOR linear_feedback(4) XOR linear_feedback(3);
                 linear_feedback <= linear_feedback(6 DOWNTO 0) & feedback_bit;
             -- Somente ocorrem mudanças com o aperto do clock
                 -- O jogador só pode "resetar" (começar, recomeçar) no fim e no inicio
@@ -43,8 +44,8 @@
                 ELSE 
                     CASE(current_state) IS 
                         WHEN sort => 
-                            random_integer <= to_integer(unsigned(linear_feedback));
-                            card_value <= (random_integer mod 13) + 1;
+                            random_integer := to_integer(unsigned(linear_feedback));
+                            card_value := (random_integer mod 13) + 1;
                             cards <= cards + card_value;
                             -- Módulo pra manter o numero dentro dos limites
                         current_state <= decide;
@@ -67,8 +68,8 @@
                         WHEN enemy =>
                             -- Mesma coisa que em sort aqui
 
-                            random_integer <= to_integer(unsigned(linear_feedback));
-                            card_value <= (random_integer mod 13) + 1;
+                            random_integer := to_integer(unsigned(linear_feedback));
+                            card_value := (random_integer mod 13) + 1;
                             enemy_cards <= enemy_cards + card_value;
                             -- O inimigo aqui é bem ambicioso
                             IF(enemy_cards < 17) THEN
@@ -79,14 +80,13 @@
                             END IF;
                             -- Fazer a comparação depois de gerar
                             -- as cartas do "inimigo"
-                            current_state <= compare;
                         WHEN compare
                         =>
                             IF(cards > enemy_cards) THEN
                                 current_state <= win;
                             ELSIF(cards = enemy_cards) THEN 
                                 current_state <= tie;
-                            ELSIF(cards < enemy_cards) THEN 
+                            ELSE
                                 current_state <= lose;
                             END IF;
                         WHEN win
