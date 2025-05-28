@@ -25,20 +25,34 @@ BEGIN
             -- O jogador só pode "resetar" (começar, recomeçar) no fim e no inicio
             IF(START = '1' AND (current_state = initial OR current_state = ending)) THEN
                 current_state <= sort;
+                cards := 0;
+                enemy_cards := 0;
             ELSE 
                 CASE(current_state) IS 
-                    WHEN sort => current_state <= decide;
+                    WHEN sort => 
+                    -- Aqui é necessário completar mais tarde com
+                    -- o algoritmo de geração aleatoria
+                    current_state <= decide;
                     WHEN decide
-                    => IF(STAY = '0' AND HIT = '1') THEN
-                            current_state <= sort;
-                        ELSIF(STAY = '1' AND HIT = '0') THEN
-                            current_state <= enemy;
-                        ELSIF(STAY = '0' AND HIT = '0') THEN
-                            current_state <= decide;
+                    =>  IF(cards > 21) THEN
+                            current_state <= lose;
+                        ELSE
+                            IF(STAY = '0' AND HIT = '1') THEN
+                                -- Aqui foi melhor deixar 
+                                -- voltando pra decide
+                                current_state <= decide;
+                            ELSIF(STAY = '1' AND HIT = '0') THEN
+                                current_state <= enemy;
+                            ELSIF(STAY = '0' AND HIT = '0') THEN
+                                current_state <= decide;
+                            END IF;
                         END IF;
+                        
                     -- Aqui a lógica é baseada na pontuação.
                     WHEN enemy =>
-
+                        -- Fazer a comparação depois de gerar
+                        -- as cartas do "inimigo"
+                        current_state <= compare;
                     WHEN compare
                     =>
                         IF(cards > enemy_cards) THEN
@@ -47,8 +61,6 @@ BEGIN
                             current_state <= tie;
                         ELSIF(cards < enemy_cards) THEN 
                             current_state <= lose;
-                        ELSE THEN
-                            current_state <= tie;
                         END IF;
                     WHEN win
                     =>
