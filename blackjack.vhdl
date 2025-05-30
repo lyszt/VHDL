@@ -1,11 +1,4 @@
 LIBRARY ieee;
-USE ieee.std_logic_1164.all;
-
-
-
-
-
-LIBRARY ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
@@ -18,9 +11,10 @@ ENTITY blackjack IS
         RESET: IN STD_LOGIC;
         YOUR_TURN: OUT STD_LOGIC;
         CARTA1: OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-        DIGITO : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-        UNIDADE : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
         ganha, empata, perde: OUT STD_LOGIC
+        TENTH  : OUT STD_LOGIC_VECTOR(6 DOWNTO 0); 
+        UNIT: OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+        CHOOSE_DISPLAYS: OUT STD_LOGIC_VECTOR(2 DOWNTO 0)  
     );
 END ENTITY blackjack;
 
@@ -30,6 +24,12 @@ SIGNAL current_state: game_state := initial;
 SIGNAL cards: INTEGER := 0;
 SIGNAL enemy_cards: INTEGER := 0;
 
+SIGNAL tenths_player : STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL units_player : STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL tenths_enemy : STD_LOGIC_VECTOR(3 DOWNTO 0);
+
+
+
 -- Geração de numero pseudoaleatório feito a partir de uma
 -- função matemática
 -- x⁸ + x⁶ + x⁵ + x⁴ + 1 com XOR
@@ -38,7 +38,62 @@ SIGNAL linear_feedback : STD_LOGIC_VECTOR(7 DOWNTO 0) := "10110101";
 SIGNAL hit_signal : STD_LOGIC := '0';
 SIGNAL stay_signal : STD_LOGIC := '0';
 
+CHOOSE_DISPLAYS <= "000"
+-- anodo ou o outro
+
 BEGIN
+    PROCESS(cards, enemy_cards)
+    BEGIN
+        tenths_player <= STD_LOGIC_VECTOR(TO_UNSIGNED(cards MOD 10, 4));
+        units_player <= STD_LOGIC_VECTOR(TO_UNSIGNED(cards / 10, 4));
+        -- Forma matemática de pegar o ultimo digito e a dezena acima
+        tenths_enemy       <= STD_LOGIC_VECTOR(TO_UNSIGNED(enemy_cards / 10, 4));
+        -- faz-se isso pra dezena do jogador e pra dezena do inimigo (que aparece no 3° display)
+    END PROCESS;
+
+    -- achei isso mais pratico do que fazer componentes, preguiça
+    WITH units_player SELECT
+        UNIT <=
+            "0111111" WHEN "0000", 
+            "0000110" WHEN "0001", 
+            "1011011" WHEN "0010", 
+            "1001111" WHEN "0011",
+            "1100110" WHEN "0100", 
+            "1101101" WHEN "0101", 
+            "1111101" WHEN "0110", 
+            "0000111" WHEN "0111", 
+            "1111111" WHEN "1000", 
+            "1101111" WHEN "1001", 
+            "0000000" WHEN OTHERS;
+
+    WITH tenths_player SELECT
+        TENTH <=
+            "0111111" WHEN "0000", 
+            "0000110" WHEN "0001", 
+            "1011011" WHEN "0010", 
+            "1001111" WHEN "0011",
+            "1100110" WHEN "0100", 
+            "1101101" WHEN "0101", 
+            "1111101" WHEN "0110", 
+            "0000111" WHEN "0111", 
+            "1111111" WHEN "1000", 
+            "1101111" WHEN "1001", 
+            "0000000" WHEN OTHERS;
+
+    WITH tenths_enemy SELECT
+        CARTA1 <=
+            "0111111" WHEN "0000", 
+            "0000110" WHEN "0001", 
+            "1011011" WHEN "0010", 
+            "1001111" WHEN "0011",
+            "1100110" WHEN "0100", 
+            "1101101" WHEN "0101", 
+            "1111101" WHEN "0110", 
+            "0000111" WHEN "0111", 
+            "1111111" WHEN "1000", 
+            "1101111" WHEN "1001", 
+            "0000000" WHEN OTHERS;
+
     PROCESS(CLOCK)
         VARIABLE v_cards: INTEGER := 0;
         VARIABLE v_enemy_cards: INTEGER := 0;
@@ -47,7 +102,6 @@ BEGIN
         VARIABLE card_value_2 : INTEGER := 0;
         VARIABLE random_integer : INTEGER := 0;
     
-        
     BEGIN 
         IF(RISING_EDGE(CLOCK)) THEN
             IF(current_state /= decide) THEN
@@ -68,20 +122,22 @@ BEGIN
             -- O jogador só pode "resetar" (começar, recomeçar) no fim e no inicio
 
                 IF(RESET = '1') THEN
-                current_state <= ending;
-                carta1 <= "00000";
-                cards <= 0;
-                enemy_cards <= 0;
-            ELSIF(START = '1' AND (current_state = initial OR current_state = ending)) THEN
-                current_state <= sort;
-                carta1 <= "00000";
-                cards <= 0;
-                enemy_cards <= 0;
+                    current_state <= ending;
+                    cards <= 0;
+                    enemy_cards <= 0;
+                    digit_type <= '0'
+                    CHOOSE_DISPLAYS <= "111"
+                    -- tenho q ver se isso funciona na fpga
+                ELSIF(START = '1' AND (current_state = initial OR current_state = ending)) THEN
+                    current_state <= sort;
+                    cards <= 0;
+                    enemy_cards <= 0;
+                    CHOOSE_DISPLAYS <= "000"
 
-            -- Apertar o clock pra apagar
-                ganha <= '0';
-                empata <= '0';
-                perde <= '0';
+                -- Apertar o clock pra apagar
+                    ganha <= '0';
+                    empata <= '0';
+                    perde <= '0';
             ELSE 
                 feedback_bit := linear_feedback(7) XOR linear_feedback(5) XOR linear_feedback(4) XOR linear_feedback(3);
                 linear_feedback <= linear_feedback(6 DOWNTO 0) & feedback_bit;
@@ -93,7 +149,6 @@ BEGIN
                         card_value_1  := (random_integer mod 10) + 1;
                         random_integer := to_integer(unsigned(linear_feedback));
                         card_value_2   := ((random_integer + 7) mod 10) + 1;
-                        carta1 <= std_logic_vector(to_unsigned(card_value_1 + card_value_2,7));
                         cards <= cards + card_value_1 + card_value_2;
                         -- Módulo pra manter o numero dentro dos limites
                         current_state <= decide;
@@ -110,7 +165,6 @@ BEGIN
                                 random_integer := to_integer(unsigned(linear_feedback));
                                 card_value_1 := ((random_integer mod 10) + 1);
                                 cards <= cards + card_value_1;
-                                carta1 <= std_logic_vector(to_unsigned(cards + card_value_1,7));
                                 
                                 IF((cards + card_value_1) > 21) THEN
                                     current_state <= lose;
@@ -165,27 +219,13 @@ BEGIN
                         current_state <= initial;
                 END CASE;
             END IF;
+            IF (current_state /= initial AND current_state /= ending AND RESET = '0') THEN
+                CHOOSE_DISPLAYS <= "000";
+            END IF;
+
         END IF;
-    
-END PROCESS;
-END ARCHITECTURE behavioral;
-
-
-
-LIBRARY ieee;
-USE ieee.std_logic_1164.all;
-
-ENTITY decoder_7seg IS
-    PORT (
-        EN: IN  STD_LOGIC;                        
-        D : IN  STD_LOGIC_VECTOR(3 DOWNTO 0);      
-        S : OUT STD_LOGIC_VECTOR(6 DOWNTO 0)       
-    );
-END ENTITY decoder_7seg;
-
-ARCHITECTURE behavioral OF decoder_7seg IS
-BEGIN
-    WITH D SELECT
+        
+        WITH D SELECT
         S <= 
             "0111111" WHEN "0000",  
             "0000110" WHEN "0001",  
@@ -198,45 +238,6 @@ BEGIN
             "1111111" WHEN "1000",  
             "1101111" WHEN "1001",  
             "0000000" WHEN OTHERS; 
+END PROCESS;
 END ARCHITECTURE behavioral;
-
-
-
-
-ENTITY blackjack_full IS
-    ENTITY COMPONENT IS 
-        PORT(
-            START: IN STD_LOGIC;
-            STAY: IN STD_LOGIC;
-            HIT : IN STD_LOGIC;
-            CLOCK: IN STD_LOGIC;
-            RESET: IN STD_LOGIC;
-            YOUR_TURN: OUT STD_LOGIC;
-            CARTA1: OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
-            CARTAINIMIGO : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
-            ganha, empata, perde: OUT STD_LOGIC
-        );
-    END COMPONENT;
-    COMPONENT decoder_7seg IS
-        PORT (
-            EN: IN  STD_LOGIC;                        
-            D : IN  STD_LOGIC_VECTOR(3 DOWNTO 0);      
-            S : OUT STD_LOGIC_VECTOR(6 DOWNTO 0)       
-        );
-    END COMPONENT;
-    PORT (
-
-    CLOCK : IN  STD_LOGIC;
-        RESET : IN  STD_LOGIC;
-        START : IN  STD_LOGIC;
-        STAY  : IN  STD_LOGIC;
-        HIT   : IN  STD_LOGIC;
-        YOUR_TURN : OUT STD_LOGIC; 
-        GANHA : OUT STD_LOGIC; 
-        EMPATA : OUT STD_LOGIC;
-        PERDE : OUT STD_LOGIC; 
-        display_anodes  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0); 
-        display_segments: OUT STD_LOGIC_VECTOR(6 DOWNTO 0)  
-    );
-END ENTITY blackjack_full;
 
